@@ -1,5 +1,41 @@
 import { createFileRoute } from "@tanstack/react-router";
+import {
+  Building2,
+  Wallet,
+  Wrench,
+  HardHat,
+  Gavel,
+  ShieldCheck,
+  MessageSquare,
+  BarChart3,
+  ClipboardList,
+  Mic,
+  CheckCircle2,
+  Sparkles,
+  Smartphone,
+  Users,
+  FileText,
+  Circle,
+  Camera,
+  type LucideIcon,
+} from "lucide-react";
 import ceilingLeak from "@/assets/ceiling-leak.jpg";
+
+const DEMO_REQUEST_EMAIL = "sales@solulab.com";
+const DEMO_REQUEST_SUBJECT = "Demo Request — StrataOS AI";
+const DEMO_REQUEST_BODY = `Hi StrataOS AI team,
+
+I'd like to request a demo of StrataOS AI for our property portfolio.
+
+Company name:
+Number of properties/lots managed:
+Preferred date/time for a demo:
+
+Thanks,`;
+
+const DEMO_REQUEST_LINK = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+  DEMO_REQUEST_EMAIL,
+)}&su=${encodeURIComponent(DEMO_REQUEST_SUBJECT)}&body=${encodeURIComponent(DEMO_REQUEST_BODY)}`;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -23,15 +59,69 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const workflow: Array<[string, string, string, string]> = [
-  ["01", "Property & Lot Management", "Buildings, lots, owners, tenants, committees", "text-mint"],
-  ["02", "Financials", "Budgets, levies, AP, AR, reconciliations", "text-aurora2"],
-  ["03", "Maintenance", "Requests, work orders, quotes, approvals", "text-aurora3"],
-  ["04", "Contractors", "Vendors, licences, insurance, compliance", "text-mint"],
-  ["05", "Governance", "AGMs, committee meetings, motions, voting", "text-aurora2"],
-  ["06", "Compliance", "Fire, WHS, insurance, inspections, certificates", "text-aurora3"],
-  ["07", "Communications", "Notices, updates, owner portal, resident requests", "text-mint"],
-  ["08", "Reporting", "Portfolio, property and financial performance", "text-aurora2"],
+const workflow: Array<{
+  num: string;
+  title: string;
+  desc: string;
+  color: string;
+  icon: LucideIcon;
+}> = [
+  {
+    num: "01",
+    title: "Property & Lot Management",
+    desc: "Buildings, lots, owners, tenants, committees",
+    color: "text-mint",
+    icon: Building2,
+  },
+  {
+    num: "02",
+    title: "Financials",
+    desc: "Budgets, levies, AP, AR, reconciliations",
+    color: "text-aurora2",
+    icon: Wallet,
+  },
+  {
+    num: "03",
+    title: "Maintenance",
+    desc: "Requests, work orders, quotes, approvals",
+    color: "text-aurora3",
+    icon: Wrench,
+  },
+  {
+    num: "04",
+    title: "Contractors",
+    desc: "Vendors, licences, insurance, compliance",
+    color: "text-mint",
+    icon: HardHat,
+  },
+  {
+    num: "05",
+    title: "Governance",
+    desc: "AGMs, committee meetings, motions, voting",
+    color: "text-aurora2",
+    icon: Gavel,
+  },
+  {
+    num: "06",
+    title: "Compliance",
+    desc: "Fire, WHS, insurance, inspections, certificates",
+    color: "text-aurora3",
+    icon: ShieldCheck,
+  },
+  {
+    num: "07",
+    title: "Communications",
+    desc: "Notices, updates, owner portal, resident requests",
+    color: "text-mint",
+    icon: MessageSquare,
+  },
+  {
+    num: "08",
+    title: "Reporting",
+    desc: "Portfolio, property and financial performance",
+    color: "text-aurora2",
+    icon: BarChart3,
+  },
 ];
 
 const coreCards = [
@@ -39,6 +129,8 @@ const coreCards = [
     title: "Property & Lot 360",
     lead: "See every record in one profile.",
     accent: "text-mint",
+    iconBg: "from-mint/20 to-mint/5 text-mint",
+    icon: Building2,
     items: [
       "Building",
       "Lot",
@@ -54,6 +146,8 @@ const coreCards = [
     title: "Financial Management",
     lead: "Manage the full money cycle.",
     accent: "text-aurora2",
+    iconBg: "from-aurora2/20 to-aurora2/5 text-aurora2",
+    icon: Wallet,
     items: [
       "Budgets",
       "Levies",
@@ -68,6 +162,8 @@ const coreCards = [
     title: "Maintenance & Work Orders",
     lead: "From issue to resolution.",
     accent: "text-aurora3",
+    iconBg: "from-aurora3/20 to-aurora3/5 text-aurora3",
+    icon: Wrench,
     items: [
       "Request intake",
       "Photos",
@@ -83,6 +179,8 @@ const coreCards = [
     title: "Contractor Management",
     lead: "Track every supplier.",
     accent: "text-mint",
+    iconBg: "from-mint/20 to-mint/5 text-mint",
+    icon: HardHat,
     items: [
       "Preferred suppliers",
       "Insurance",
@@ -97,6 +195,8 @@ const coreCards = [
     title: "Meetings & Governance",
     lead: "Manage the decision record.",
     accent: "text-aurora2",
+    iconBg: "from-aurora2/20 to-aurora2/5 text-aurora2",
+    icon: Gavel,
     items: [
       "AGM",
       "Committee meetings",
@@ -112,6 +212,8 @@ const coreCards = [
     title: "Compliance",
     lead: "Track every obligation.",
     accent: "text-aurora3",
+    iconBg: "from-aurora3/20 to-aurora3/5 text-aurora3",
+    icon: ShieldCheck,
     items: [
       "Fire inspections",
       "Insurance",
@@ -147,13 +249,167 @@ const questions = [
 ];
 
 const montage = [
-  { name: "Portfolio dashboard", detail: "284 buildings · 6,420 lots", accent: "from-mint/25" },
-  { name: "Maintenance AI", detail: "87 open jobs · 7 urgent", accent: "from-aurora2/25" },
-  { name: "AGM assistant", detail: "14 meetings this month", accent: "from-aurora3/25" },
-  { name: "Compliance dashboard", detail: "23 items due · 5 critical", accent: "from-mint/25" },
-  { name: "Owner portal", decor: "portal", detail: "Levies, notices, documents", accent: "from-aurora2/25" },
-  { name: "Mobile resident request", detail: "Report an issue in 30 seconds", accent: "from-aurora3/25" },
+  {
+    name: "Portfolio dashboard",
+    detail: "284 buildings · 6,420 lots",
+    accent: "from-mint/25",
+    ring: "text-mint",
+    icon: BarChart3,
+    kind: "stats" as const,
+    stats: [
+      ["284", "Buildings"],
+      ["6,420", "Lots"],
+      ["87", "Jobs"],
+      ["23", "Compliance"],
+    ],
+  },
+  {
+    name: "Maintenance AI",
+    detail: "87 open jobs · 7 urgent",
+    accent: "from-aurora2/25",
+    ring: "text-aurora2",
+    icon: Wrench,
+    kind: "list" as const,
+    rows: [
+      { dot: "bg-red-400", label: "Ceiling leak", tag: "Urgent" },
+      { dot: "bg-amber-400", label: "Lift fault", tag: "In progress" },
+      { dot: "bg-mint", label: "Gate repair", tag: "Scheduled" },
+    ],
+  },
+  {
+    name: "AGM assistant",
+    detail: "14 meetings this month",
+    accent: "from-aurora3/25",
+    ring: "text-aurora3",
+    icon: Gavel,
+    kind: "checklist" as const,
+    rows: [
+      { done: true, label: "Agenda" },
+      { done: true, label: "Financial summary" },
+      { done: false, label: "Motions pending" },
+    ],
+  },
+  {
+    name: "Compliance dashboard",
+    detail: "23 items due · 5 critical",
+    accent: "from-mint/25",
+    ring: "text-mint",
+    icon: ShieldCheck,
+    kind: "compliance" as const,
+    pills: [
+      ["5", "Red", "bg-red-500/15 text-red-300"],
+      ["9", "Amber", "bg-amber-500/15 text-amber-300"],
+      ["212", "Green", "bg-mint/15 text-mint"],
+    ],
+  },
+  {
+    name: "Owner portal",
+    detail: "Levies, notices, documents",
+    accent: "from-aurora2/25",
+    ring: "text-aurora2",
+    icon: Users,
+    kind: "documents" as const,
+    rows: ["Levy notice — Q3", "Insurance certificate", "AGM minutes"],
+  },
+  {
+    name: "Mobile resident request",
+    detail: "Report an issue in 30 seconds",
+    accent: "from-aurora3/25",
+    ring: "text-aurora3",
+    icon: Smartphone,
+    kind: "mobile" as const,
+  },
 ];
+
+function MontageVisual({ m }: { m: (typeof montage)[number] }) {
+  switch (m.kind) {
+    case "stats":
+      return (
+        <div className="grid grid-cols-2 gap-1.5">
+          {m.stats.map(([v, l]) => (
+            <div key={l} className="rounded-md bg-ink/40 px-2 py-1.5">
+              <div className="font-display text-sm font-bold text-white">{v}</div>
+              <div className="truncate text-[8px] uppercase tracking-wide text-white/45">{l}</div>
+            </div>
+          ))}
+        </div>
+      );
+    case "list":
+      return (
+        <div className="flex flex-col gap-1.5">
+          {m.rows.map((r) => (
+            <div
+              key={r.label}
+              className="flex items-center gap-1.5 rounded-md bg-ink/40 px-2 py-1.5"
+            >
+              <span className={`size-1.5 shrink-0 rounded-full ${r.dot}`} />
+              <span className="min-w-0 flex-1 truncate text-[10px] text-white/75">{r.label}</span>
+              <span className="shrink-0 text-[8px] uppercase tracking-wide text-white/40">
+                {r.tag}
+              </span>
+            </div>
+          ))}
+        </div>
+      );
+    case "checklist":
+      return (
+        <div className="flex flex-col gap-1.5">
+          {m.rows.map((r) => (
+            <div key={r.label} className="flex items-center gap-1.5 rounded-md bg-ink/40 px-2 py-1.5">
+              {r.done ? (
+                <CheckCircle2 className="size-3 shrink-0 text-mint" strokeWidth={2.5} />
+              ) : (
+                <Circle className="size-3 shrink-0 text-white/30" strokeWidth={2.5} />
+              )}
+              <span
+                className={`min-w-0 flex-1 truncate text-[10px] ${r.done ? "text-white/75" : "text-white/40"}`}
+              >
+                {r.label}
+              </span>
+            </div>
+          ))}
+        </div>
+      );
+    case "compliance":
+      return (
+        <div className="grid grid-cols-3 gap-1.5">
+          {m.pills.map(([v, l, c]) => (
+            <div key={l} className={`rounded-md px-1.5 py-1.5 text-center ${c}`}>
+              <div className="font-display text-sm font-bold">{v}</div>
+              <div className="text-[8px] uppercase tracking-wide opacity-80">{l}</div>
+            </div>
+          ))}
+        </div>
+      );
+    case "documents":
+      return (
+        <div className="flex flex-col gap-1.5">
+          {m.rows.map((label) => (
+            <div key={label} className="flex items-center gap-1.5 rounded-md bg-ink/40 px-2 py-1.5">
+              <FileText className="size-3 shrink-0 text-white/40" strokeWidth={2} />
+              <span className="min-w-0 flex-1 truncate text-[10px] text-white/75">{label}</span>
+            </div>
+          ))}
+        </div>
+      );
+    case "mobile":
+      return (
+        <div className="flex h-full items-center justify-center">
+          <div className="flex w-24 flex-col items-center gap-1.5 rounded-xl border border-white/15 bg-ink/50 px-2 py-3">
+            <span className="grid size-7 place-items-center rounded-full bg-aurora3/20 text-aurora3">
+              <Camera className="size-3.5" strokeWidth={2} />
+            </span>
+            <span className="text-center text-[9px] font-medium leading-snug text-white/75">
+              Report an issue
+            </span>
+            <span className="rounded-full bg-aurora3 px-2.5 py-0.5 text-[8px] font-semibold text-ink">
+              Submit
+            </span>
+          </div>
+        </div>
+      );
+  }
+}
 
 function SectionHeading({
   eyebrow,
@@ -216,6 +472,9 @@ function Index() {
               <a className="transition hover:text-white" href="#ai">
                 AI Agents
               </a>
+              <a className="transition hover:text-white" href="#governance">
+                Governance
+              </a>
               <a className="transition hover:text-white" href="#compliance">
                 Compliance
               </a>
@@ -224,7 +483,9 @@ function Index() {
               </a>
             </nav>
             <a
-              href="#demo"
+              href={DEMO_REQUEST_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
               className="shrink-0 rounded-full bg-white px-4 py-2 text-sm font-semibold text-ink transition hover:bg-white/90"
             >
               Book a demo
@@ -259,7 +520,9 @@ function Index() {
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <a
-              href="#demo"
+              href={DEMO_REQUEST_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
               className="rounded-full bg-gradient-to-r from-mint to-aurora2 px-5 py-3 text-sm font-semibold text-ink shadow-[0_16px_40px_-16px_rgba(94,234,212,0.8)] transition hover:brightness-110"
             >
               See StrataOS AI in Action →
@@ -320,8 +583,8 @@ function Index() {
             </div>
             <div className="min-w-0 lg:col-span-2">
               <div className="flex items-center gap-2">
-                <span className="grid size-7 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-aurora2 to-aurora3 font-display text-[10px] font-bold text-ink">
-                  AI
+                <span className="grid size-7 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-aurora2 to-aurora3 text-ink">
+                  <Sparkles className="size-3.5" strokeWidth={2.5} />
                 </span>
                 <span className="truncate text-xs font-semibold">AI Strata Manager</span>
               </div>
@@ -365,13 +628,13 @@ function Index() {
           sub="StrataOS connects the full operating cycle — eight workflows around a single building record."
         />
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {workflow.slice(0, 4).map(([num, title, desc, color]) => (
-            <WorkflowCard key={num} num={num} title={title} desc={desc} color={color} />
+          {workflow.slice(0, 4).map((w) => (
+            <WorkflowCard key={w.num} {...w} />
           ))}
         </div>
         <div className="glass my-4 flex flex-col items-center gap-3 rounded-3xl px-6 py-8 text-center">
-          <span className="grid size-12 place-items-center rounded-2xl bg-gradient-to-br from-mint to-aurora3 font-display text-lg font-bold text-ink">
-            ⌂
+          <span className="grid size-12 place-items-center rounded-2xl bg-gradient-to-br from-mint to-aurora3 text-ink">
+            <Building2 className="size-5" strokeWidth={2.25} />
           </span>
           <p className="font-display text-base font-semibold sm:text-lg">
             One central property record
@@ -381,8 +644,8 @@ function Index() {
           </p>
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {workflow.slice(4).map(([num, title, desc, color]) => (
-            <WorkflowCard key={num} num={num} title={title} desc={desc} color={color} />
+          {workflow.slice(4).map((w) => (
+            <WorkflowCard key={w.num} {...w} />
           ))}
         </div>
         <BigLine>
@@ -402,9 +665,16 @@ function Index() {
           {coreCards.map((card) => (
             <div
               key={card.title}
-              className="glass flex flex-col rounded-2xl p-6 transition hover:border-white/20"
+              className="glass card-hover flex flex-col rounded-2xl p-6 hover:border-white/20"
             >
-              <div className="font-display text-lg font-semibold leading-snug">{card.title}</div>
+              <span
+                className={`grid size-10 place-items-center rounded-xl bg-gradient-to-br ${card.iconBg}`}
+              >
+                <card.icon className="size-5" strokeWidth={2} />
+              </span>
+              <div className="mt-4 font-display text-lg font-semibold leading-snug">
+                {card.title}
+              </div>
               <p className={`mt-1 text-xs ${card.accent}`}>{card.lead}</p>
               <ul className="mt-5 flex flex-wrap gap-2">
                 {card.items.map((item) => (
@@ -510,11 +780,14 @@ function Index() {
           accent="text-aurora2"
         />
         <div className="mt-12 grid gap-4 md:grid-cols-3">
-          <div className="glass rounded-2xl p-6">
-            <div className="text-[11px] uppercase tracking-[0.16em] text-white/40">
+          <div className="glass card-hover rounded-2xl p-6">
+            <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-mint/20 to-mint/5 text-mint">
+              <ClipboardList className="size-5" strokeWidth={2} />
+            </span>
+            <div className="mt-4 text-[11px] uppercase tracking-[0.16em] text-white/40">
               Before meeting
             </div>
-            <div className="mt-2 font-display text-lg font-semibold">AGM Pack</div>
+            <div className="mt-1 font-display text-lg font-semibold">AGM Pack</div>
             <ul className="mt-4 space-y-2 text-sm text-white/70">
               {[
                 "Agenda",
@@ -534,9 +807,14 @@ function Index() {
               previous resolutions, contractor issues, compliance deadlines, outstanding motions.
             </p>
           </div>
-          <div className="glass rounded-2xl p-6">
-            <div className="text-[11px] uppercase tracking-[0.16em] text-white/40">Live meeting</div>
-            <div className="mt-2 font-display text-lg font-semibold">AI Meeting Assistant</div>
+          <div className="glass card-hover rounded-2xl p-6">
+            <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-aurora2/20 to-aurora2/5 text-aurora2">
+              <Mic className="size-5" strokeWidth={2} />
+            </span>
+            <div className="mt-4 text-[11px] uppercase tracking-[0.16em] text-white/40">
+              Live meeting
+            </div>
+            <div className="mt-1 font-display text-lg font-semibold">AI Meeting Assistant</div>
             <ul className="mt-4 space-y-2 text-sm text-white/70">
               {[
                 "Records discussion",
@@ -552,9 +830,14 @@ function Index() {
               ))}
             </ul>
           </div>
-          <div className="glass rounded-2xl p-6">
-            <div className="text-[11px] uppercase tracking-[0.16em] text-white/40">After meeting</div>
-            <div className="mt-2 font-display text-lg font-semibold">Minutes &amp; Actions</div>
+          <div className="glass card-hover rounded-2xl p-6">
+            <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-aurora3/20 to-aurora3/5 text-aurora3">
+              <CheckCircle2 className="size-5" strokeWidth={2} />
+            </span>
+            <div className="mt-4 text-[11px] uppercase tracking-[0.16em] text-white/40">
+              After meeting
+            </div>
+            <div className="mt-1 font-display text-lg font-semibold">Minutes &amp; Actions</div>
             <ul className="mt-4 space-y-2 text-sm text-white/70">
               {[
                 "Minutes",
@@ -675,24 +958,26 @@ function Index() {
           title="Ask your entire portfolio anything."
         />
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
-          <ul className="flex flex-wrap content-start gap-2">
-            {questions.map((q) => (
-              <li
-                key={q}
-                className="chip rounded-full px-3.5 py-2 text-xs leading-snug text-white/65"
-              >
-                “{q}”
-              </li>
-            ))}
-          </ul>
+          <div className="flex lg:h-full lg:items-center">
+            <ul className="flex flex-wrap gap-2">
+              {questions.map((q) => (
+                <li
+                  key={q}
+                  className="chip card-hover rounded-full px-3.5 py-2 text-xs leading-snug text-white/65"
+                >
+                  “{q}”
+                </li>
+              ))}
+            </ul>
+          </div>
           <div className="glass min-w-0 rounded-3xl p-4 sm:p-6">
             <div className="ml-auto w-fit max-w-[85%] rounded-2xl bg-white px-4 py-2 text-sm font-medium text-ink">
               What are my biggest portfolio risks this week?
             </div>
             <div className="chip mt-4 rounded-2xl p-4 sm:p-5">
               <div className="flex items-center gap-2">
-                <span className="grid size-7 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-aurora2 to-aurora3 font-display text-[10px] font-bold text-ink">
-                  AI
+                <span className="grid size-7 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-aurora2 to-aurora3 text-ink">
+                  <Sparkles className="size-3.5" strokeWidth={2.5} />
                 </span>
                 <span className="min-w-0 truncate text-xs font-semibold">
                   StrataOS AI — 5 issues require action
@@ -802,15 +1087,17 @@ function Index() {
       <section className="relative z-10 mx-auto max-w-7xl px-5 pb-8 sm:px-6">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {montage.map((m) => (
-            <div key={m.name} className="glass overflow-hidden rounded-2xl p-4">
+            <div key={m.name} className="glass card-hover overflow-hidden rounded-2xl p-4">
               <div
-                className={`relative flex aspect-[16/10] items-end overflow-hidden rounded-xl bg-gradient-to-br ${m.accent} to-transparent p-3`}
+                className={`relative flex aspect-[16/10] flex-col overflow-hidden rounded-xl bg-gradient-to-br ${m.accent} to-transparent p-3`}
               >
-                <div className="absolute inset-3 grid grid-rows-4 gap-1.5 opacity-70">
-                  <div className="rounded bg-white/15" />
-                  <div className="rounded bg-white/10" />
-                  <div className="rounded bg-white/10" />
-                  <div className="rounded bg-white/5" />
+                <span
+                  className={`mb-2.5 grid size-7 shrink-0 place-items-center rounded-lg bg-ink/50 ${m.ring}`}
+                >
+                  <m.icon className="size-4" strokeWidth={2} />
+                </span>
+                <div className="flex flex-1 flex-col justify-center">
+                  <MontageVisual m={m} />
                 </div>
               </div>
               <div className="mt-3 font-display text-sm font-semibold">{m.name}</div>
@@ -821,7 +1108,7 @@ function Index() {
       </section>
 
       {/* CTA */}
-      <section id="demo" className="relative z-10 mx-auto max-w-4xl px-5 py-20 text-center sm:px-6">
+      <section className="relative z-10 mx-auto max-w-4xl px-5 py-20 text-center sm:px-6">
         <h2 className="font-display text-2xl font-bold leading-tight tracking-tight sm:text-4xl">
           Your strata managers should manage relationships and make decisions.
           <br className="hidden sm:block" />{" "}
@@ -831,13 +1118,17 @@ function Index() {
         </h2>
         <div className="mt-10 flex flex-wrap justify-center gap-3">
           <a
-            href="#demo"
+            href={DEMO_REQUEST_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
             className="rounded-full bg-gradient-to-r from-mint to-aurora2 px-6 py-3 text-sm font-semibold text-ink shadow-[0_16px_40px_-16px_rgba(94,234,212,0.8)] transition hover:brightness-110"
           >
             See StrataOS AI in Action →
           </a>
           <a
-            href="#demo"
+            href={DEMO_REQUEST_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
             className="chip rounded-full px-6 py-3 text-sm font-medium text-white/80 transition hover:text-white"
           >
             Request a Tailored Demo
@@ -856,7 +1147,7 @@ function Index() {
           <p className="text-sm text-white/55">
             The AI Operating System for Modern Strata &amp; Property Management.
           </p>
-          <p className="text-xs text-white/35">Powered by APT Business Services + SoluLab</p>
+          <p className="text-xs text-white/45">Powered by APT Business Services + SoluLab</p>
         </div>
       </footer>
     </div>
@@ -868,15 +1159,20 @@ function WorkflowCard({
   title,
   desc,
   color,
+  icon: Icon,
 }: {
   num: string;
   title: string;
   desc: string;
   color: string;
+  icon: LucideIcon;
 }) {
   return (
-    <div className="chip rounded-2xl p-5 transition hover:border-white/25">
-      <div className={`font-display text-sm font-bold ${color}`}>{num}</div>
+    <div className="chip card-hover rounded-2xl p-5 hover:border-white/25">
+      <div className="flex items-center justify-between gap-2">
+        <span className={`font-display text-sm font-bold ${color}`}>{num}</span>
+        <Icon className={`size-4 ${color} opacity-80`} strokeWidth={2} />
+      </div>
       <div className="mt-2 font-display text-sm font-semibold leading-snug">{title}</div>
       <div className="mt-1.5 text-xs leading-snug text-white/45">{desc}</div>
     </div>

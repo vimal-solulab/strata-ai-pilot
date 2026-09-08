@@ -170,6 +170,13 @@
       radial-gradient(42% 50% at 82% 8%, rgba(56, 189, 248, 0.24), transparent 62%),
       radial-gradient(46% 55% at 62% 78%, rgba(167, 139, 250, 0.2), transparent 64%);
     filter: blur(60px);
+    animation: aurora-drift 24s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .aurora {
+      animation: none;
+    }
   }
 
   .glass {
@@ -190,6 +197,28 @@
       linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
     background-size: 64px 64px;
     mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+  }
+
+  .card-hover {
+    transition:
+      transform 0.25s ease,
+      border-color 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 45px -22px rgba(94, 234, 212, 0.35);
+  }
+}
+
+@keyframes aurora-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(1%, -2%, 0) scale(1.05);
   }
 }
 
