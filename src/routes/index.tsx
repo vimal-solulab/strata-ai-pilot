@@ -1109,8 +1109,8 @@ function Index() {
           />
         </Reveal>
         <div className="mt-9 grid gap-6 lg:grid-cols-[1fr_0.85fr_1.15fr] lg:items-stretch lg:gap-5">
-          <Reveal>
-            <div className="surface h-full rounded-2xl p-4">
+          <Reveal className="flex">
+            <div className="surface flex h-full w-full flex-col rounded-2xl p-4">
               <div className="text-xs font-semibold uppercase tracking-wider text-muted2">Resident submitted</div>
               <p className="mt-2 text-sm text-ink">"Water is leaking through my ceiling."</p>
               <img
@@ -1119,7 +1119,7 @@ function Index() {
                 width={1024}
                 height={576}
                 loading="lazy"
-                className="mt-3 aspect-[16/9] w-full rounded-lg object-cover"
+                className="mt-3 min-h-0 w-full flex-1 rounded-lg object-cover"
               />
             </div>
           </Reveal>
@@ -1531,7 +1531,6 @@ function Index() {
             <p className="mt-3 max-w-sm text-sm text-white/60">
               The AI Operating System for Modern Strata &amp; Property Management.
             </p>
-            <p className="mt-4 text-xs text-white/70">Powered by APT Business Services + SoluLab</p>
           </div>
           <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/60 md:justify-end">
             {navLinks.map((n) => (
@@ -1541,8 +1540,9 @@ function Index() {
             ))}
           </nav>
         </div>
-        <div className="mx-auto mt-10 max-w-7xl border-t border-white/10 pt-6 text-xs text-white/70">
-          © {new Date().getFullYear()} StrataOS AI. All rights reserved.
+        <div className="mx-auto mt-10 flex max-w-7xl flex-col gap-2 border-t border-white/10 pt-6 text-xs text-white/70 sm:flex-row sm:items-center sm:justify-between">
+          <span>© {new Date().getFullYear()} StrataOS AI. All rights reserved.</span>
+          <span>Powered by APT Business Services + SoluLab</span>
         </div>
       </footer>
     </div>
