@@ -132,13 +132,49 @@
   --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
+@theme {
+  --color-ink: #060910;
+  --color-ink2: #0a0f1b;
+  --color-aurora: #6ee7b7;
+  --color-aurora2: #38bdf8;
+  --color-aurora3: #c084fc;
+  --color-mint: #6ee7b7;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
   }
 
   body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+    background-color: var(--color-ink);
+    color: #ffffff;
+    font-family: var(--font-body);
   }
 }
+
+@layer components {
+  .aurora {
+    position: absolute;
+    inset: -10%;
+    background:
+      radial-gradient(40% 50% at 20% 20%, rgba(110, 231, 183, 0.3), transparent 60%),
+      radial-gradient(45% 55% at 80% 15%, rgba(56, 189, 248, 0.26), transparent 60%),
+      radial-gradient(50% 60% at 60% 90%, rgba(192, 132, 252, 0.22), transparent 62%);
+    filter: blur(46px);
+  }
+
+  .glass {
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(18px);
+  }
+
+  .chip {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+}
+
