@@ -53,8 +53,11 @@ export const Route = createFileRoute("/")({
 });
 
 // ---------------------------------------------------------------------------
-// Contact / demo request — every CTA on this page opens the visitor's email
-// client via a mailto: link. Change CONTACT_EMAIL to redirect them all.
+// Contact / demo request — every CTA on this page opens a Gmail compose
+// window (in a new tab) addressed to CONTACT_EMAIL. Change CONTACT_EMAIL to
+// redirect them all. Using Gmail's web compose URL (rather than a plain
+// mailto: link) guarantees it opens Gmail specifically, regardless of the
+// visitor's OS-level default mail app.
 // ---------------------------------------------------------------------------
 const CONTACT_EMAIL = "sales@solulab.com";
 const DEMO_SUBJECT = "Demo Request — StrataOS AI";
@@ -67,7 +70,7 @@ Number of properties/lots managed:
 Preferred date/time for a demo:
 
 Thanks,`;
-const DEMO_MAILTO = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(DEMO_SUBJECT)}&body=${encodeURIComponent(DEMO_BODY)}`;
+const DEMO_MAILTO = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(CONTACT_EMAIL)}&su=${encodeURIComponent(DEMO_SUBJECT)}&body=${encodeURIComponent(DEMO_BODY)}`;
 
 // ---------------------------------------------------------------------------
 // Content
@@ -539,7 +542,7 @@ function WorkflowCard({
 }) {
   const a = accentClasses[accent];
   return (
-    <div className="surface card-hover flex flex-col rounded-2xl p-5">
+    <div className="surface card-hover flex h-full flex-col rounded-2xl p-5">
       <div className="flex items-center justify-between gap-2">
         <span className={`font-display text-sm font-bold ${a.text}`}>{num}</span>
         <span className={`grid size-8 place-items-center rounded-lg ${a.iconBg}`}>
@@ -819,6 +822,8 @@ function Index() {
             </nav>
             <a
               href={DEMO_MAILTO}
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-shine hidden shrink-0 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white sm:inline-block"
             >
               Book a demo
@@ -848,6 +853,8 @@ function Index() {
               ))}
               <a
                 href={DEMO_MAILTO}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setMenuOpen(false)}
                 className="mt-2 rounded-lg bg-ink px-3 py-2.5 text-center text-sm font-semibold text-white"
               >
@@ -884,12 +891,19 @@ function Index() {
           <div className="mt-7 flex flex-wrap items-center gap-3">
             <a
               href={DEMO_MAILTO}
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-shine inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-brand to-brand2 px-6 py-3.5 text-sm font-semibold text-white shadow-[0_18px_38px_-12px_rgba(76,29,149,0.6)]"
             >
               See StrataOS AI in Action
               <ArrowRight className="size-4" />
             </a>
-            <a href={DEMO_MAILTO} className="chip btn-shine rounded-full px-6 py-3.5 text-sm font-semibold text-ink">
+            <a
+              href={DEMO_MAILTO}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="chip btn-shine rounded-full px-6 py-3.5 text-sm font-semibold text-ink"
+            >
               Request a Tailored Demo
             </a>
           </div>
@@ -1504,6 +1518,8 @@ function Index() {
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <a
               href={DEMO_MAILTO}
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-shine inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-brand to-brand2 px-6 py-3 text-sm font-semibold text-white shadow-[0_16px_36px_-14px_rgba(76,29,149,0.5)]"
             >
               See StrataOS AI in Action
@@ -1511,6 +1527,8 @@ function Index() {
             </a>
             <a
               href={DEMO_MAILTO}
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-shine rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-medium text-white"
             >
               Request a Tailored Demo
